@@ -1,7 +1,3 @@
-
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Enemy : Actor
@@ -28,7 +24,7 @@ public class Enemy : Actor
     {
         var PlayerStats = m_Player.PlayerStats;
         if (PlayerStats == null) return;
-        float hpUpgrade = m_enemyStats.hp * Helper.GetUpgradeFormula(PlayerStats.level + 1);
+        float hpUpgrade = m_enemyStats.hpUp * Helper.GetUpgradeFormula(PlayerStats.level + 1);
         float damageUpgrade = m_enemyStats.damageUp * Helper.GetUpgradeFormula(PlayerStats.level + 1);
         float randomXPBonus = Random.Range(m_enemyStats.minXPBonus, m_enemyStats.maxXPBonus);
         CurHP = m_enemyStats.hp + hpUpgrade;
@@ -44,7 +40,7 @@ public class Enemy : Actor
 
     private void onSpawnCollectables()
     {
-
+        CollectablesManager.Ins.Spawn(transform.position);
     }
 
     private void onAddXpToPlayer()

@@ -12,9 +12,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPotion
       objectReference: {fileID: 0}
+    - target: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_TagString
+      value: Collectable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662731769300298464, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662731769300298464, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.081
       objectReference: {fileID: 0}
     - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -78,6 +106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2141279748544067012}
+    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8517350462111843519}
     - targetCorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2333481639848525518}
@@ -175,3 +206,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.019695878, y: -0.011254787}
   m_Size: {x: 1.2371876, y: 1.8666177}
   m_Direction: 0
+--- !u!114 &-8517350462111843519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6483253659961758296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf74a74d437c4454a91bc8b1147ea757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minBonus: 10
+  m_maxBonus: 20
+  m_lifeTime: 10
+  m_spawnForce: 80

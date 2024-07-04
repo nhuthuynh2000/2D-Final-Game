@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.5387354
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -210,6 +210,63 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &887770512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887770514}
+  - component: {fileID: 887770513}
+  m_Layer: 0
+  m_Name: CollectablesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &887770513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887770512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d611daacd9456cb4f87258b925ce4f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_items:
+  - spawnRate: 0.8
+    amount: 5
+    collectablePrefab: {fileID: 5519857449532272506, guid: 663bd6add23674649848faede0b97be2, type: 3}
+  - spawnRate: 0.05
+    amount: 1
+    collectablePrefab: {fileID: 7476032932663077003, guid: a23eaba1d9f46a44e874e236cdcc26cd, type: 3}
+  - spawnRate: 0.01
+    amount: 1
+    collectablePrefab: {fileID: -8517350462111843519, guid: df558309d7faf094ab7444f0ebfc9b65, type: 3}
+  - spawnRate: 0.001
+    amount: 1
+    collectablePrefab: {fileID: -7402551897074296447, guid: b6a122e8b125352489f2ac3c4ad0eb71, type: 3}
+--- !u!4 &887770514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887770512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6873071, y: 0.5353856, z: -0.015648015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244,14 +301,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d85d62eccb83174d9c68c90d0b2eaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  cameraDistance: 5
   m_mapPrefab: {fileID: -5613403708872054396, guid: 31a48aca6b0d89948b03dce7164db13b, type: 3}
   m_playerPrefab: {fileID: 8001086655329392206, guid: 338f3490f46519b4cbbbf899797b651c, type: 3}
   m_enemyPrefab:
   - {fileID: 367730983494927825, guid: c5c86a1e367d85b4db179f0a4e5beb6d, type: 3}
   m_enemySpawnVFX: {fileID: 100004, guid: 9a11d672c46ec404e9f5cefad3c1102e, type: 3}
-  m_enemySpawnTime: 5
+  m_enemySpawnTime: 2
   m_playerMaxLife: 8
-  m_playerStartingLife: 1
+  m_playerStartingLife: 3
 --- !u!4 &1208521744
 Transform:
   m_ObjectHideFlags: 0
@@ -273,3 +332,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1208521744}
+  - {fileID: 887770514}

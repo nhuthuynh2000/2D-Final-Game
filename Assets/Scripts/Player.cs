@@ -1,5 +1,3 @@
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +10,7 @@ public class Player : Actor
 
     [SerializeField] private float m_enemyDetectionRad;
     [SerializeField] private LayerMask m_enemyDetectionLayer;
+
 
     private float m_curSpeed;
     private Actor m_enemyTargeted;
@@ -37,6 +36,7 @@ public class Player : Actor
         m_playerStats.Load();
         CurHP = m_playerStats.hp;
     }
+
 
     private void Update()
     {
@@ -159,7 +159,7 @@ public class Player : Actor
         Knockback();
         onTakeDamage?.Invoke();
         if (CurHP > 0) return;
-        GameManager.Ins.GameOverChecking(OnLostLifeDelegate,OnDeadDelegate);
+        GameManager.Ins.GameOverChecking(OnLostLifeDelegate, OnDeadDelegate);
     }
 
     private void OnLostLifeDelegate()
@@ -183,6 +183,12 @@ public class Player : Actor
             {
                 TakeDamage(enemy.CurDamage);
             }
+        }
+        else if (col.gameObject.CompareTag(TagConsts.COLLECTABLE_TAG))
+        {
+            Collectable collectable = col.gameObject.GetComponent<Collectable>();
+            collectable?.Trigger();
+            Destroy(collectable.gameObject);
         }
     }
     private void OnDrawGizmos()
