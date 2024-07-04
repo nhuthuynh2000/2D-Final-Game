@@ -1,5 +1,7 @@
 
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Enemy : Actor
@@ -18,8 +20,8 @@ public class Enemy : Actor
         m_enemyStats = (EnemyStats)statsData;
         m_enemyStats.Load();
         StatsCalculate();
-        onDead.AddListener(() => onSpawnCollectables(transform.position));
-        onDead.AddListener(() => onAddXpToPlayer(m_xpBonus));
+        onDead.AddListener(() => onSpawnCollectables());
+        onDead.AddListener(() => onAddXpToPlayer());
     }
 
     private void StatsCalculate()
@@ -34,13 +36,58 @@ public class Enemy : Actor
         m_xpBonus = randomXPBonus * Helper.GetUpgradeFormula(PlayerStats.level + 1);
     }
 
-    private void onSpawnCollectables(Vector3 spawnPos)
+    protected override void Die()
+    {
+        base.Die();
+        m_anim.SetTrigger(AnimConsts.ENEMY_DEAD_PARAM);
+    }
+
+    private void onSpawnCollectables()
     {
 
     }
 
-    private void onAddXpToPlayer(float xp)
+    private void onAddXpToPlayer()
     {
 
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    protected override void Move()
+    {
+        if (IsDead || m_Player == null) return;
+        Vector2 playerDir = m_Player.transform.position - transform.position;
+        playerDir.Normalize();
+        if (!m_isKnockback)
+        {
+            Flip(playerDir);
+            m_rb.velocity = playerDir * m_enemyStats.moveSpeed * Time.deltaTime;
+            return;
+        }
+        m_rb.velocity = playerDir * -m_enemyStats.knockbackForce * Time.deltaTime;
+    }
+
+    private void Flip(Vector2 playerDir)
+    {
+        if (playerDir.x > 0)
+        {
+            if (transform.localScale.x > 0) return;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            if (transform.localScale.x < 0) return;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    private void OnDisable()
+    {
+        onDead.RemoveListener(onSpawnCollectables);
+        onDead.RemoveListener(onAddXpToPlayer);
     }
 }

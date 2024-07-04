@@ -59,7 +59,6 @@ public class Player : Actor
 
     private void WeaponHandle()
     {
-        Debug.Log("Da phat hien" + m_enemyTargeted.name);
         if (m_enemyTargeted == null || weapon == null) return;
         m_enemyTargetedDir = m_enemyTargeted.transform.position - weapon.transform.position;
         m_enemyTargetedDir.Normalize();

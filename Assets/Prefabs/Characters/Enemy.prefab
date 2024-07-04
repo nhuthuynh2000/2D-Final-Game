@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.49
+      value: -7.56
       objectReference: {fileID: 0}
     - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 3.89
       objectReference: {fileID: 0}
     - target: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,12 +90,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8206210352894151451}
-    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6643532129463428645}
-    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5251484998330604561}
     - targetCorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4438050007472295478}
@@ -177,56 +171,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62265813, y: 0.7442807}
   m_EdgeRadius: 0
---- !u!114 &6643532129463428645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172338563615704023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cdd906833ed815489c84c8d45b1fa0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsData: {fileID: 0}
-  m_invincibleLayer: 0
-  m_normalLayer: 0
-  weapon: {fileID: 0}
-  onIn:
-    m_PersistentCalls:
-      m_Calls: []
-  onTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onDead:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5251484998330604561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172338563615704023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cdd906833ed815489c84c8d45b1fa0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsData: {fileID: 0}
-  m_invincibleLayer: 0
-  m_normalLayer: 0
-  weapon: {fileID: 0}
-  onIn:
-    m_PersistentCalls:
-      m_Calls: []
-  onTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onDead:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &821364882920168151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private Player m_player;
+    [SerializeField] private Player m_player;
 
     public Player Player { get => m_player; private set => m_player = value; }
 
