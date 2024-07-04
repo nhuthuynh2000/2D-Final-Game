@@ -82,6 +82,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6016882454372118010}
+    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8001086655329392206}
     - targetCorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4683440306818712528}
@@ -163,6 +166,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5415765, y: 0.6881472}
   m_EdgeRadius: 0
+--- !u!114 &8001086655329392206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172338563615704023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5df834603eeaf469befd36ebc0db79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsData: {fileID: 11400000, guid: 720ec4c99b7f9e748a90ed398eb86912, type: 2}
+  m_invincibleLayer: 7
+  m_normalLayer: 6
+  weapon: {fileID: 4424148750435857147, guid: 80522331772696b458943ead82688e1a, type: 3}
+  onIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  m_accelerationSpeed: 400
+  m_maxMousePosDistance: 90
+  m_velocityLimit: {x: 5, y: 5}
+  m_enemyDetectionRad: 5
+  m_enemyDetectionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  OnAddXP:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onLostLife:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &821364882920168151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}

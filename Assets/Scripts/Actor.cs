@@ -3,12 +3,14 @@ using DEV;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Actor : MonoBehaviour
 {
-    [Header("CommonsL: ")]
+    [Header("Commons: ")]
     public ActorStats statsData;
     [LayerList]
     [SerializeField] private int m_invincibleLayer;
+    [LayerList]
     [SerializeField] private int m_normalLayer;
     public Weapon weapon;
     protected bool m_isKnockback;
@@ -38,7 +40,7 @@ public class Actor : MonoBehaviour
         onIn?.Invoke();
     }
 
-    public void Init()
+    public virtual void Init()
     {
 
     }

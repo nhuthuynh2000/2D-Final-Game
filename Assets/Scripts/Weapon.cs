@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,7 +61,8 @@ public class Weapon : MonoBehaviour
         if (m_isShoot || !m_shootingPoint || m_curBullet <= 0) return;
         if (m_muzzleFlash)
         {
-            Instantiate(m_muzzleFlash, m_shootingPoint.position, transform.rotation);
+            var muzzleFlashClone = Instantiate(m_muzzleFlash, m_shootingPoint.position, transform.rotation);
+            muzzleFlashClone.transform.SetParent(m_shootingPoint);
         }
         if (m_bullet)
         {
