@@ -159,7 +159,19 @@ public class Player : Actor
         Knockback();
         onTakeDamage?.Invoke();
         if (CurHP > 0) return;
-        //Giam so mang cua Player dang co
+        GameManager.Ins.GameOverChecking(OnLostLifeDelegate,OnDeadDelegate);
+    }
+
+    private void OnLostLifeDelegate()
+    {
+        CurHP = m_playerStats.hp;
+        onLostLife?.Invoke();
+    }
+
+    private void OnDeadDelegate()
+    {
+        CurHP = 0;
+        Die();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
