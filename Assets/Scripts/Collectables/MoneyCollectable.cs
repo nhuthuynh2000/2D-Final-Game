@@ -3,7 +3,8 @@ public class MoneyCollectable : Collectable
     public override void Trigger()
     {
         Prefs.coins += m_bonus;
-        //Update UI
+
+        GUIManager.Ins.UpdateCoinsCounting(Prefs.coins);
         //Play Sound
     }
 }

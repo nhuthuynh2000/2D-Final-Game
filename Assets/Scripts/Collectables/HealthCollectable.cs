@@ -7,7 +7,8 @@ public class HealthCollectable : Collectable
         if (m_player == null) return;
         m_player.CurHP += m_bonus;
         m_player.CurHP = Mathf.Clamp(m_player.CurHP, 0, m_player.PlayerStats.hp);
-        //Update UI
+
+        GUIManager.Ins.UpdateHPInfo(m_player.CurHP, m_player.PlayerStats.hp);
         //Play sound
     }
 }

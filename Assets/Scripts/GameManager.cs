@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 
     private Map m_map;
     private Player m_player;
+    private PlayerStats m_playerStats;
     private int m_curLife;
 
 
@@ -47,18 +48,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Init()
     {
-        State = GameStates.PLAYING; //PLAYING for testing
+        State = GameStates.STARTING;
         m_curLife = m_playerStartingLife;
-
         SpawnMap_Player();
-        PlayGame(); // FOR TESTING
+        GUIManager.Ins.showGameGUI(false);
     }
-
-    public override void Awake()
-    {
-        MakeSingleton(false);
-    }
-
     private void SpawnMap_Player()
     {
         if (m_mapPrefab == null || m_playerPrefab == null) return;
@@ -66,6 +60,29 @@ public class GameManager : Singleton<GameManager>
         m_player = Instantiate(m_playerPrefab, m_map.playerSpawnPoint.position, Quaternion.identity);
         PositionCameraBehindPlayer();
     }
+
+    public void PlayGame()
+    {
+        State = GameStates.PLAYING;
+        m_playerStats = m_player.PlayerStats;
+        if (m_player)
+        {
+
+        }
+        SpawnEnemy();
+        if (m_player == null || m_playerStats == null) return;
+        GUIManager.Ins.showGameGUI(true);
+        GUIManager.Ins.UpdateLifeInfo(m_curLife);
+        GUIManager.Ins.UpdateCoinsCounting(Prefs.coins);
+        GUIManager.Ins.UpdateHPInfo(m_player.CurHP, m_playerStats.hp);
+        GUIManager.Ins.UpdateLevelInfo(m_playerStats.level, m_playerStats.xp, m_playerStats.levelUpXPNeed);
+    }
+
+    public override void Awake()
+    {
+        MakeSingleton(false);
+    }
+
 
     private void PositionCameraBehindPlayer()
     {
@@ -85,14 +102,7 @@ public class GameManager : Singleton<GameManager>
         PositionCameraBehindPlayer();
     }
 
-    public void PlayGame()
-    {
-        if (m_player)
-        {
 
-        }
-        SpawnEnemy();
-    }
 
     private void SpawnEnemy()
     {
@@ -110,8 +120,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SpawnEnemy_Coroutine(Enemy randomEnemy)
     {
-        yield return new WaitForSeconds(3);
-        State = GameStates.PLAYING;
+        yield return new WaitForSeconds(3f);
         while (State == GameStates.PLAYING)
         {
             if (m_map.randomEnemySpawnPoint == null) break;
