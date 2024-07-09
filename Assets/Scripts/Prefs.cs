@@ -27,6 +27,11 @@ public static class Prefs
         set => PlayerPrefs.SetString(PrefConsts.WEAPON_KEY, value);
         get => PlayerPrefs.GetString(PrefConsts.WEAPON_KEY);
     }
+    public static string skills
+    {
+        set => PlayerPrefs.SetString(PrefConsts.SKILL_KEY, value);
+        get => PlayerPrefs.GetString(PrefConsts.SKILL_KEY);
+    }
     public static bool IsEnoughCoins(int coinToCheck)
     {
         return coins >= coinToCheck;

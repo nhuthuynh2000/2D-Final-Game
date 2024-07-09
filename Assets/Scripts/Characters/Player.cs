@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -102,6 +103,7 @@ public class Player : Actor
         {
             if (Input.GetMouseButton(0))
             {
+                Flip(mousePos);
                 Run(mousePos, movingDir);
             }
             else
@@ -112,6 +114,18 @@ public class Player : Actor
         }
         m_rb.velocity = m_enemyTargetedDir * -statsData.knockbackForce * Time.deltaTime;
         m_anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
+    }
+
+    private void Flip(Vector2 mousePos)
+    {
+        if (mousePos == null) return;
+        if(mousePos.x < transform.position.x && transform.localScale.x >0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x *-1, transform.localScale.y, transform.localScale.z);
+        } else if(mousePos.x > transform.position.x && transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     private void BackToIdle()
