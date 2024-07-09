@@ -93,6 +93,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 367730983494927825}
+    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6423293371261263063}
     - targetCorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4438050007472295478}
@@ -161,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.04210013, y: -0.000000014901161}
+  m_Offset: {x: -0.065787494, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -172,7 +175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.62265813, y: 0.7442807}
+  m_Size: {x: 0.5752834, y: 0.7442807}
   m_EdgeRadius: 0
 --- !u!114 &367730983494927825
 MonoBehaviour:
@@ -195,10 +198,46 @@ MonoBehaviour:
       m_Calls: []
   onTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6423293371261263063}
+        m_TargetAssemblyTypeName: ActorVisual, Assembly-CSharp
+        m_MethodName: OnTakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6423293371261263063}
+        m_TargetAssemblyTypeName: EnemyVisual, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6423293371261263063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172338563615704023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b2a12509baa60468618792ecc7a15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &821364882920168151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}

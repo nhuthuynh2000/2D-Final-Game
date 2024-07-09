@@ -23,6 +23,6 @@ MonoBehaviour:
   reloadTimeDown: 0.1
   damageUp: 0.25
   upgradePrice: 25
-  upgradePriceUp: 25
+  upgradePriceUp: 20
   minFireRate: 0.1
   minreloadTime: 0.1

@@ -57,7 +57,7 @@ public class GUIManager : Singleton<GUIManager>
             var lifeIconClone = Instantiate(m_lifeIconPrefab, Vector3.zero, Quaternion.identity);
             lifeIconClone.transform.SetParent(m_LifeGrid);
             lifeIconClone.transform.localPosition = Vector3.zero;
-            lifeIconClone.transform.localScale = Vector3.zero;
+            lifeIconClone.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -75,7 +75,7 @@ public class GUIManager : Singleton<GUIManager>
 
     public void UpdateLevelInfo(int curLevel, float curXp, float levelUpXpNeed)
     {
-        m_levelProgressBar?.UpdateValue(curLevel, levelUpXpNeed);
+        m_levelProgressBar?.UpdateValue(curXp, levelUpXpNeed);
         if (m_levelCountingText) m_levelCountingText.text = $"LEVEL {curLevel.ToString("00")}";
         if (m_xpCountingText) m_xpCountingText.text = $"{curXp.ToString("00")}/{levelUpXpNeed.ToString("00")}";
     }

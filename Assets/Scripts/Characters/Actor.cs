@@ -20,6 +20,9 @@ public class Actor : MonoBehaviour
     protected Rigidbody2D m_rb;
     protected Animator m_anim;
 
+    protected Coroutine m_stopKnockbackCo;
+    protected Coroutine m_invincibleCo;
+
     [Header("Events: ")]
     public UnityEvent onIn;
     public UnityEvent onTakeDamage;
@@ -66,25 +69,28 @@ public class Actor : MonoBehaviour
         Destroy(gameObject, 0.5f);
     }
 
-    public void Knockback()
+    protected void Knockback()
     {
         if (m_isInvincible || m_isKnockback || IsDead) return;
         m_isKnockback = true;
-        StartCoroutine(StopKnockback());
+        m_stopKnockbackCo = StartCoroutine(StopKnockback());
     }
-
-    private IEnumerator StopKnockback()
+    protected void Invincible(float InvincibleTime)
     {
-        yield return new WaitForSeconds(statsData.knockbackTime);
         m_isKnockback = false;
         m_isInvincible = true;
         gameObject.layer = m_invincibleLayer;
-        StartCoroutine(StopInvincible());
+        m_invincibleCo = StartCoroutine(StopInvincible(InvincibleTime));
+    }
+    private IEnumerator StopKnockback()
+    {
+        yield return new WaitForSeconds(statsData.knockbackTime);
+        Invincible(statsData.invicibleTime);
     }
 
-    private IEnumerator StopInvincible()
+    private IEnumerator StopInvincible(float InvincibleTime)
     {
-        yield return new WaitForSeconds(statsData.invicibleTime);
+        yield return new WaitForSeconds(InvincibleTime);
         m_isInvincible = false;
         gameObject.layer = m_normalLayer;
     }

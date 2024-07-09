@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 public enum GameStates
@@ -14,11 +15,12 @@ public class GameManager : Singleton<GameManager>
 {
     public static GameStates State;
     [Header("Camera Setting: ")]
-    public Camera mainCamera;
+    public CinemachineVirtualCamera mainCamera;
     public float cameraDistance = 5f;
     [SerializeField] private Map m_mapPrefab;
     [SerializeField] private Player m_playerPrefab;
     [SerializeField] private Enemy[] m_enemyPrefab;
+    [SerializeField] private Boss[] m_bossPrefab;
     [SerializeField] private GameObject m_enemySpawnVFX;
     [SerializeField] private float m_enemySpawnTime;
     [SerializeField] private int m_playerMaxLife;
@@ -28,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     private Player m_player;
     private PlayerStats m_playerStats;
     private int m_curLife;
-
+    private bool canSpawnBoss = true;
 
     public Player Player { get => m_player; private set => m_player = value; }
     public int CurLife
@@ -58,7 +60,7 @@ public class GameManager : Singleton<GameManager>
         if (m_mapPrefab == null || m_playerPrefab == null) return;
         m_map = Instantiate(m_mapPrefab, Vector3.zero, Quaternion.identity);
         m_player = Instantiate(m_playerPrefab, m_map.playerSpawnPoint.position, Quaternion.identity);
-        PositionCameraBehindPlayer();
+        mainCamera.Follow = m_player.transform;
     }
 
     public void PlayGame()
@@ -84,23 +86,23 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    private void PositionCameraBehindPlayer()
-    {
-        // Tính vị trí camera dựa trên vị trí của player
-        Vector3 cameraPosition = m_player.transform.position;
-        cameraPosition += -m_player.transform.forward * cameraDistance;
+    // private void PositionCameraBehindPlayer()
+    // {
+    //     // Tính vị trí camera dựa trên vị trí của player
+    //     Vector3 cameraPosition = m_player.transform.position;
+    //     cameraPosition += -m_player.transform.forward * cameraDistance;
 
-        // Cập nhật vị trí camera
-        mainCamera.transform.position = cameraPosition;
+    //     // Cập nhật vị trí camera
+    //     mainCamera.transform.position = cameraPosition;
 
-        // Xoay camera để hướng về phía player
-        mainCamera.transform.LookAt(m_player.transform);
-    }
+    //     // Xoay camera để hướng về phía player
+    //     mainCamera.transform.LookAt(m_player.transform);
+    // }
 
-    private void LateUpdate()
-    {
-        PositionCameraBehindPlayer();
-    }
+    // private void LateUpdate()
+    // {
+    //     PositionCameraBehindPlayer();
+    // }
 
 
 
@@ -113,8 +115,8 @@ public class GameManager : Singleton<GameManager>
 
     private Enemy GetRandomEnemy()
     {
-        if (m_enemyPrefab == null || m_enemyPrefab.Length <= 0) return null;
-        int randomIndex = UnityEngine.Random.Range(0, m_enemyPrefab.Length);
+        if (m_enemyPrefab == null || m_bossPrefab.Length <= 0) return null;
+        int randomIndex = UnityEngine.Random.Range(0, m_bossPrefab.Length);
         return m_enemyPrefab[randomIndex];
     }
 
@@ -143,6 +145,17 @@ public class GameManager : Singleton<GameManager>
             State = GameStates.GAMEOVER;
             OnDead?.Invoke();
             Debug.Log("GameOver!!!!");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (m_map.randomEnemySpawnPoint == null || canSpawnBoss == false) return;
+            Vector3 bossSpawnPoint = m_map.randomEnemySpawnPoint.position;
+            Instantiate(m_bossPrefab[0], bossSpawnPoint, Quaternion.identity);
+            canSpawnBoss = false;
         }
     }
 }

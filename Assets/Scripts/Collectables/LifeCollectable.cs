@@ -2,9 +2,9 @@ public class LifeCollectable : Collectable
 {
     public override void Trigger()
     {
-        GameManager.Ins.CurLife += m_bonus;
+        GameManager.Ins.CurLife += 1;
 
         GUIManager.Ins.UpdateLifeInfo(GameManager.Ins.CurLife);
-        //Play sound
+        AudioController.Ins.PlaySound(AudioController.Ins.lifePickup);
     }
 }

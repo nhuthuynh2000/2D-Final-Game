@@ -107,7 +107,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1520786051
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2553601245801642294, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
@@ -117,6 +118,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4424148750435857147}
+    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7145772970205715888}
   m_SourcePrefab: {fileID: 100100000, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
 --- !u!1 &1121972464681628640 stripped
 GameObject:
@@ -141,13 +145,63 @@ MonoBehaviour:
   m_muzzleFlash: {fileID: 1121972464681628640, guid: 7435f752e00856248ac99fb18dde4ee3, type: 3}
   onShoot:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7145772970205715888}
+        m_TargetAssemblyTypeName: WeaponVisual, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReload:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7145772970205715888}
+        m_TargetAssemblyTypeName: WeaponVisual, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onReloadDone:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7145772970205715888}
+        m_TargetAssemblyTypeName: WeaponVisual, Assembly-CSharp
+        m_MethodName: OnReloadDone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7145772970205715888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121972464681628640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e0b1f78643b204d8246c043301430c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_shootingSound: {fileID: 8300000, guid: 15f458ae437c38d4dbe2defcc149403f, type: 3}
+  m_reloadSound: {fileID: 8300000, guid: 4de7616c2f9a76e458231a675eec9c49, type: 3}
 --- !u!4 &7975346614115323566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5827934833385529866, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}

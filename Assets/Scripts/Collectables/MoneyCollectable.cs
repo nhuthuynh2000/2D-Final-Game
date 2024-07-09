@@ -5,6 +5,6 @@ public class MoneyCollectable : Collectable
         Prefs.coins += m_bonus;
 
         GUIManager.Ins.UpdateCoinsCounting(Prefs.coins);
-        //Play Sound
+        AudioController.Ins.PlaySound(AudioController.Ins.coinPickup);
     }
 }

@@ -9,6 +9,6 @@ public class HealthCollectable : Collectable
         m_player.CurHP = Mathf.Clamp(m_player.CurHP, 0, m_player.PlayerStats.hp);
 
         GUIManager.Ins.UpdateHPInfo(m_player.CurHP, m_player.PlayerStats.hp);
-        //Play sound
+        AudioController.Ins.PlaySound(AudioController.Ins.healthPickup);
     }
 }

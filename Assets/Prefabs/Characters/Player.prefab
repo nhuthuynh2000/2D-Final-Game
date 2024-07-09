@@ -96,6 +96,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8001086655329392206}
+    - targetCorrespondingSourceObject: {fileID: 3593002397933936452, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 374616643898650360}
     - targetCorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4683440306818712528}
@@ -164,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010914862, y: -0.009355605}
+  m_Offset: {x: -0.013871014, y: 0.009233803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -175,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5415765, y: 0.6881472}
+  m_Size: {x: 0.442433, y: 0.56421787}
   m_EdgeRadius: 0
 --- !u!114 &8001086655329392206
 MonoBehaviour:
@@ -198,10 +201,34 @@ MonoBehaviour:
       m_Calls: []
   onTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374616643898650360}
+        m_TargetAssemblyTypeName: PlayerVisual, Assembly-CSharp
+        m_MethodName: OnTakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374616643898650360}
+        m_TargetAssemblyTypeName: PlayerVisual, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_accelerationSpeed: 400
   m_maxMousePosDistance: 90
   m_velocityLimit: {x: 5, y: 5}
@@ -211,13 +238,62 @@ MonoBehaviour:
     m_Bits: 256
   OnAddXP:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374616643898650360}
+        m_TargetAssemblyTypeName: PlayerVisual, Assembly-CSharp
+        m_MethodName: OnAddXP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onLevelUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374616643898650360}
+        m_TargetAssemblyTypeName: PlayerVisual, Assembly-CSharp
+        m_MethodName: OnLevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onLostLife:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374616643898650360}
+        m_TargetAssemblyTypeName: PlayerVisual, Assembly-CSharp
+        m_MethodName: OnLostLife
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &374616643898650360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172338563615704023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfa7b7e9d263cf47a8a3b981a6c1a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_deathVFXPrefab: {fileID: 149344, guid: 617378de28fbaa64c96485d5b0d9169b, type: 3}
 --- !u!1 &821364882920168151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4097922322973787716, guid: 903bc280cb19b554b953fbfb5e6c7e2c, type: 3}
@@ -268,6 +344,10 @@ PrefabInstance:
     - target: {fileID: 1121972464681628640, guid: 80522331772696b458943ead82688e1a, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395283143680964640, guid: 80522331772696b458943ead82688e1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 5392570761367784945, guid: 80522331772696b458943ead82688e1a, type: 3}
       propertyPath: m_Layer

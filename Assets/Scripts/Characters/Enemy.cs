@@ -45,7 +45,7 @@ public class Enemy : Actor
 
     private void onAddXpToPlayer()
     {
-
+        GameManager.Ins.Player.AddXP(m_xpBonus);
     }
 
     private void FixedUpdate()
@@ -79,6 +79,19 @@ public class Enemy : Actor
             if (transform.localScale.x < 0) return;
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        if (damage < 0 || m_isInvincible) return;
+        CurHP -= m_Player.weapon.statsData.damage;
+        Knockback();
+        if (CurHP <= 0)
+        {
+            CurHP = 0;
+            Die();
+        }
+        onTakeDamage?.Invoke();
     }
 
     private void OnDisable()
