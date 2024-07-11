@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
     private Player m_player;
     private PlayerStats m_playerStats;
     private int m_curLife;
-    private bool canSpawnBoss = true;
 
     public Player Player { get => m_player; private set => m_player = value; }
     public int CurLife
@@ -145,17 +144,6 @@ public class GameManager : Singleton<GameManager>
             State = GameStates.GAMEOVER;
             OnDead?.Invoke();
             Debug.Log("GameOver!!!!");
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            if (m_map.randomEnemySpawnPoint == null || canSpawnBoss == false) return;
-            Vector3 bossSpawnPoint = m_map.randomEnemySpawnPoint.position;
-            Instantiate(m_bossPrefab[0], bossSpawnPoint, Quaternion.identity);
-            canSpawnBoss = false;
         }
     }
 }

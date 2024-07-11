@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        Shoot();
         ReduceFireRate();
         ReduceReloadTime();
     }
@@ -57,7 +58,7 @@ public class Weapon : MonoBehaviour
         m_curFireRate = statsData.fireRate;
         m_isShoot = false;
     }
-    public void Shoot(Vector3 targetDirection)
+    public void Shoot()
     {
         if (m_isShoot || !m_shootingPoint || m_curBullet <= 0) return;
         if (m_muzzleFlash)

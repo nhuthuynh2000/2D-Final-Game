@@ -14,9 +14,12 @@ public class Player : Actor
 
 
     private float m_curSpeed;
-    private Actor m_enemyTargeted;
     private Vector2 m_enemyTargetedDir;
     private PlayerStats m_playerStats;
+    private bool isFacingRight = true;
+    private float maxRotationAngle = 45f;
+    private Quaternion targetRotation;
+    private float rotationSmoothness = 1.0f;
 
     [Header("Player Events: ")]
     public UnityEvent OnAddXP;
@@ -41,70 +44,60 @@ public class Player : Actor
 
     private void Update()
     {
-        Move();
+
     }
 
     public void FixedUpdate()
     {
-        DetectEnemy();
-    }
-
-    private void DetectEnemy()
-    {
-        var enemyFindeds = Physics2D.OverlapCircleAll(transform.position, m_enemyDetectionRad, m_enemyDetectionLayer);
-        var finalEnemy = FindNearestEnemy(enemyFindeds);
-        if (finalEnemy == null) return;
-        m_enemyTargeted = finalEnemy;
+        Move();
         WeaponHandle();
+        /*if (Input.GetMouseButton(0))
+        {
+            Debug.Log("Da nhan chuot trai");
+            weapon.Shoot();
+        }*/
     }
 
     private void WeaponHandle()
     {
-        if (m_enemyTargeted == null || weapon == null) return;
-        m_enemyTargetedDir = m_enemyTargeted.transform.position - weapon.transform.position;
-        m_enemyTargetedDir.Normalize();
-        float angle = Mathf.Atan2(m_enemyTargetedDir.y, m_enemyTargetedDir.x) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        if (m_isKnockback) return;
-        weapon.Shoot(m_enemyTargetedDir);
-    }
+        if (weapon == null) return;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 shootDir = mousePos - (Vector2)weapon.transform.position;
+        shootDir.Normalize();
 
-    private Actor FindNearestEnemy(Collider2D[] enemyFindeds)
-    {
-        float minDistance = 0f;
-        Actor finalEnemy = null;
-        if (enemyFindeds == null || enemyFindeds.Length <= 0) return null;
-        for (int i = 0; i < enemyFindeds.Length; i++)
+        if (mousePos.x < transform.position.x && isFacingRight)
         {
-            var enemyFinded = enemyFindeds[i];
-            if (enemyFinded == null) continue;
-            if (finalEnemy == null)
-            {
-                minDistance = Vector2.Distance(transform.position, enemyFinded.transform.position);
-            }
-            else
-            {
-                float distanceTemp = Vector2.Distance(transform.position, enemyFinded.transform.position);
-                if (distanceTemp > minDistance) continue;
-                minDistance = distanceTemp;
-            }
-            finalEnemy = enemyFinded.GetComponent<Actor>();
+            Flip();
         }
-        return finalEnemy;
+        else if (mousePos.x > transform.position.x && !isFacingRight)
+        {
+            Flip();
+        }
+
+        float angle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
+        angle = Mathf.Clamp(angle, -maxRotationAngle, maxRotationAngle);
+        targetRotation = Quaternion.Euler(0f, 0f, angle);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmoothness);
+        weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, targetRotation, Time.deltaTime * rotationSmoothness);
+
+        if (m_isKnockback) return;
     }
 
     protected override void Move()
     {
         if (IsDead) return;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 movingDir = mousePos - (Vector2)transform.position;
-        movingDir.Normalize();
+
+        Vector2 movingDir = Vector2.zero;
+
+        float xDir = Input.GetAxisRaw("Horizontal");
+        float yDir = Input.GetAxisRaw("Vertical");
+        movingDir = new Vector2(xDir, yDir);
         if (!m_isKnockback)
         {
-            if (Input.GetMouseButton(0))
+            if (movingDir != Vector2.zero)
             {
-                Flip(mousePos);
-                Run(mousePos, movingDir);
+                Run(movingDir);
             }
             else
             {
@@ -112,20 +105,17 @@ public class Player : Actor
             }
             return;
         }
+
         m_rb.velocity = m_enemyTargetedDir * -statsData.knockbackForce * Time.deltaTime;
         m_anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
     }
 
-    private void Flip(Vector2 mousePos)
+    private void Flip()
     {
-        if (mousePos == null) return;
-        if(mousePos.x < transform.position.x && transform.localScale.x >0)
-        {
-            transform.localScale = new Vector3(transform.localScale.x *-1, transform.localScale.y, transform.localScale.z);
-        } else if(mousePos.x > transform.position.x && transform.localScale.x < 0)
-        {
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        }
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     private void BackToIdle()
@@ -136,15 +126,12 @@ public class Player : Actor
         m_anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
     }
 
-    private void Run(Vector2 mousePos, Vector2 movingDir)
+    private void Run(Vector2 movingDir)
     {
         m_curSpeed += m_accelerationSpeed * Time.deltaTime;
         m_curSpeed = Mathf.Clamp(m_curSpeed, 0f, PlayerStats.moveSpeed);
         float delta = m_curSpeed * Time.deltaTime;
-        float distanceToMousePos = Vector2.Distance(transform.position, mousePos);
-        distanceToMousePos = Mathf.Clamp(distanceToMousePos, 0f, m_maxMousePosDistance / 3);
-        delta *= distanceToMousePos;
-        m_rb.velocity = movingDir * delta;
+        m_rb.velocity = movingDir.normalized * delta;
         float velocityLimitX = Mathf.Clamp(m_rb.velocity.x, -m_velocityLimit.x, m_velocityLimit.y);
         float velocityLimitY = Mathf.Clamp(m_rb.velocity.y, -m_velocityLimit.y, m_velocityLimit.y);
         m_rb.velocity = new Vector2(velocityLimitX, velocityLimitY);
