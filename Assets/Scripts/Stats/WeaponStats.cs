@@ -73,6 +73,7 @@ public class WeaponStats : Stats
             reloadTime = Mathf.Clamp(reloadTime, minreloadTime, reloadTime);
             damage += damageUp * Helper.GetUpgradeFormula(level);
             upgradePrice += upgradePriceUp * level;
+            GUIManager.Ins.UpdateBulletCouting(bullets, bullets);
             Save();
             OnSuccess?.Invoke();
             return;

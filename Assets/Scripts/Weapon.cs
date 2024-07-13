@@ -31,11 +31,15 @@ public class Weapon : MonoBehaviour
         m_curBullet = statsData.bullets;
         m_curFireRate = statsData.fireRate;
         m_curReloadTime = statsData.reloadTime;
+        GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
     }
 
     private void Update()
     {
-        Shoot();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
         ReduceFireRate();
         ReduceReloadTime();
     }
@@ -47,6 +51,7 @@ public class Weapon : MonoBehaviour
         if (m_curReloadTime > 0) return;
         LoadStart();
         m_isReloading = false;
+        GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
         onReloadDone?.Invoke();
     }
 
@@ -76,8 +81,9 @@ public class Weapon : MonoBehaviour
             }
         }
         m_curBullet--;
+        GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
         m_isShoot = true;
-        if (m_curBullet <= 0)
+        if (m_curBullet <=0)
         {
             Reload();
         }

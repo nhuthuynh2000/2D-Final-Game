@@ -14,6 +14,7 @@ public class GUIManager : Singleton<GUIManager>
     [SerializeField] private Text m_hpCountingText;
     [SerializeField] private Text m_coinCountingText;
     [SerializeField] private Text m_reloadStateText;
+    [SerializeField] private Text m_bulletCountingText;
     [SerializeField] private Dialog m_gunUpgradeDialog;
     [SerializeField] private Dialog m_gameOverDialog;
     private Dialog m_activeDialog;
@@ -94,5 +95,11 @@ public class GUIManager : Singleton<GUIManager>
     public void ShowReloadText(bool isShow)
     {
         if (m_reloadStateText) m_reloadStateText.gameObject.SetActive(isShow);
+    }
+
+    public void UpdateBulletCouting(int curBullet, int bullet)
+    {
+        if (m_bulletCountingText)
+            m_bulletCountingText.text = $"{curBullet.ToString("n0")}/{bullet.ToString("n0")}";
     }
 }
