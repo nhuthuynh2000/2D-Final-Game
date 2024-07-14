@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FireRing : MonoBehaviour
+public class FireRing : SkillsController
 {
-    // Start is called before the first frame update
-    void Start()
+    private FireRingSkillSO m_curStats;
+
+    private void Awake()
     {
-        
+        m_curStats = (FireRingSkillSO)skillStats;
+    }
+    private void OnEnable()
+    {
+        OnTriggerEnter.AddListener(TriggerEnter);
+        OnSkillUpdate.AddListener(SkillUpdate);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        OnTriggerEnter.RemoveListener(TriggerEnter);
+        OnSkillUpdate.RemoveListener(SkillUpdate);
+    }
+    public void TriggerEnter()
+    {
+        Debug.Log("Fire Ring was trigger, damage is" + m_curStats.damage);
+    }
+
+    public void SkillUpdate()
+    {
+        Debug.Log("Fire Ring was updating");
     }
 }

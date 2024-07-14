@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Camera Setting: ")]
     public CinemachineVirtualCamera mainCamera;
     public float cameraDistance = 5f;
+    [SerializeField] private SkillButtonsDrawers m_skillButtonsDrawer;
     [SerializeField] private Map m_mapPrefab;
     [SerializeField] private Player m_playerPrefab;
     [SerializeField] private Enemy[] m_enemyPrefab;
@@ -45,6 +46,11 @@ public class GameManager : Singleton<GameManager>
     public override void Start()
     {
         Init();
+        SkillsManager.Ins?.AddSkill(SkillType.FireRing, 1);
+        SkillsManager.Ins?.AddSkill(SkillType.Shield, 1);
+        SkillsManager.Ins?.AddSkill(SkillType.ThunderBolt, 1);
+        SkillsManager.Ins?.AddSkill(SkillType.FireRateUp, 1);
+        m_skillButtonsDrawer?.DrawSkillButton();
     }
 
     private void Init()
