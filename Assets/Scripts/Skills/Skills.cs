@@ -28,10 +28,10 @@ public class Skills : MonoBehaviour
 
     public virtual void InIt()
     {
-        
+
     }
 
-    public virtual void DealDamage(float damage)
+    public virtual void DealDamageAndEffect(float damage)
     {
 
     }

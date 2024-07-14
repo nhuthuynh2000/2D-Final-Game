@@ -16,10 +16,6 @@ public class Player : Actor
     private float m_curSpeed;
     private Vector2 m_enemyTargetedDir;
     private PlayerStats m_playerStats;
-    private bool isFacingRight = true;
-    private float maxRotationAngle = 45f;
-    private Quaternion targetRotation;
-    private float rotationSmoothness = 1.0f;
 
     [Header("Player Events: ")]
     public UnityEvent OnAddXP;
@@ -51,11 +47,6 @@ public class Player : Actor
     {
         Move();
         WeaponHandle();
-        /*if (Input.GetMouseButton(0))
-        {
-            Debug.Log("Da nhan chuot trai");
-            weapon.Shoot();
-        }*/
     }
 
     private void WeaponHandle()
@@ -65,22 +56,8 @@ public class Player : Actor
         Vector2 shootDir = mousePos - (Vector2)weapon.transform.position;
         shootDir.Normalize();
 
-        if (mousePos.x < transform.position.x && isFacingRight)
-        {
-            Flip();
-        }
-        else if (mousePos.x > transform.position.x && !isFacingRight)
-        {
-            Flip();
-        }
-
         float angle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
-        angle = Mathf.Clamp(angle, -maxRotationAngle, maxRotationAngle);
-        targetRotation = Quaternion.Euler(0f, 0f, angle);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmoothness);
-        weapon.transform.rotation = Quaternion.Slerp(weapon.transform.rotation, targetRotation, Time.deltaTime * rotationSmoothness);
-
+        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         if (m_isKnockback) return;
     }
 
@@ -108,14 +85,6 @@ public class Player : Actor
 
         m_rb.velocity = m_enemyTargetedDir * -statsData.knockbackForce * Time.deltaTime;
         m_anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
-    }
-
-    private void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
     }
 
     private void BackToIdle()

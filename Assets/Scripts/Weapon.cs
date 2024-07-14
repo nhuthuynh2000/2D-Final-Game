@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Shoot();
         }
@@ -83,7 +83,7 @@ public class Weapon : MonoBehaviour
         m_curBullet--;
         GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
         m_isShoot = true;
-        if (m_curBullet <=0)
+        if (m_curBullet <= 0)
         {
             Reload();
         }

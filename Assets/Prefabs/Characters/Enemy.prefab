@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsData: {fileID: 11400000, guid: 08435571614a5d045a02a4ebfc5da0b9, type: 2}
-  m_invincibleLayer: 7
+  m_invincibleLayer: 0
   m_normalLayer: 8
   weapon: {fileID: 0}
   onIn:
