@@ -46,10 +46,10 @@ public class GameManager : Singleton<GameManager>
     public override void Start()
     {
         Init();
-        SkillsManager.Ins?.AddSkill(SkillType.FireRing, 1);
-        SkillsManager.Ins?.AddSkill(SkillType.Shield, 1);
-        SkillsManager.Ins?.AddSkill(SkillType.ThunderBolt, 1);
-        SkillsManager.Ins?.AddSkill(SkillType.FireRateUp, 1);
+        SkillsManager.Ins?.AddSkill(SkillType.FireRing, 99);
+        SkillsManager.Ins?.AddSkill(SkillType.Shield, 99);
+        SkillsManager.Ins?.AddSkill(SkillType.ThunderBolt, 99);
+        SkillsManager.Ins?.AddSkill(SkillType.FireRateUp, 99);
         m_skillButtonsDrawer?.DrawSkillButton();
     }
 
@@ -90,27 +90,6 @@ public class GameManager : Singleton<GameManager>
         MakeSingleton(false);
     }
 
-
-    // private void PositionCameraBehindPlayer()
-    // {
-    //     // Tính vị trí camera dựa trên vị trí của player
-    //     Vector3 cameraPosition = m_player.transform.position;
-    //     cameraPosition += -m_player.transform.forward * cameraDistance;
-
-    //     // Cập nhật vị trí camera
-    //     mainCamera.transform.position = cameraPosition;
-
-    //     // Xoay camera để hướng về phía player
-    //     mainCamera.transform.LookAt(m_player.transform);
-    // }
-
-    // private void LateUpdate()
-    // {
-    //     PositionCameraBehindPlayer();
-    // }
-
-
-
     private void SpawnEnemy()
     {
         var randomEnemy = GetRandomEnemy();
@@ -149,7 +128,6 @@ public class GameManager : Singleton<GameManager>
         {
             State = GameStates.GAMEOVER;
             OnDead?.Invoke();
-            Debug.Log("GameOver!!!!");
         }
     }
 }

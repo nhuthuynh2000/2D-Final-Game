@@ -51,7 +51,7 @@ public class SkillButtons : MonoBehaviour
     private void UpdateUI()
     {
         if (m_skillController == null) return;
-        if (m_skillIcon != null)
+        if (m_skillIcon)
         {
             m_skillIcon.sprite = m_skillController.skillStats.skillIcon;
         }

@@ -19,7 +19,7 @@ public class SkillsManager : Singleton<SkillsManager>
     private void Initialize()
     {
         m_skillCollecteds = new Dictionary<SkillType, int>();
-        if (m_skillCollecteds == null || m_skillControllers.Length <= 0) return;
+        if (m_skillControllers == null || m_skillControllers.Length <= 0) return;
 
         for (int i = 0; i < m_skillControllers.Length; i++)
         {

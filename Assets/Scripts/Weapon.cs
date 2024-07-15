@@ -19,18 +19,22 @@ public class Weapon : MonoBehaviour
     public UnityEvent onReload;
     public UnityEvent onReloadDone;
 
+    public float CurFireRate { get => m_curFireRate; set => m_curFireRate = value; }
+    public float CurReloadTime { get => m_curReloadTime; set => m_curReloadTime = value; }
+    public bool IsShoot { get => m_isShoot; set => m_isShoot = value; }
+
     private void Start()
     {
-        LoadStart();
+        LoadStats();
     }
 
-    private void LoadStart()
+    private void LoadStats()
     {
         if (!statsData) return;
         statsData.Load();
         m_curBullet = statsData.bullets;
-        m_curFireRate = statsData.fireRate;
-        m_curReloadTime = statsData.reloadTime;
+        CurFireRate = statsData.fireRate;
+        CurReloadTime = statsData.reloadTime;
         GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
     }
 
@@ -47,9 +51,9 @@ public class Weapon : MonoBehaviour
     private void ReduceReloadTime()
     {
         if (!m_isReloading) return;
-        m_curReloadTime -= Time.deltaTime;
-        if (m_curReloadTime > 0) return;
-        LoadStart();
+        CurReloadTime -= Time.deltaTime;
+        if (CurReloadTime > 0) return;
+        LoadStats();
         m_isReloading = false;
         GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
         onReloadDone?.Invoke();
@@ -57,15 +61,17 @@ public class Weapon : MonoBehaviour
 
     private void ReduceFireRate()
     {
-        if (!m_isShoot) return;
-        m_curFireRate -= Time.deltaTime;
-        if (m_curFireRate > 0) return;
-        m_curFireRate = statsData.fireRate;
-        m_isShoot = false;
+        if (!IsShoot) return;
+        CurFireRate -= Time.deltaTime;
+        if (CurFireRate > 0) return;
+
+        CurFireRate = statsData.fireRate;
+        IsShoot = false;
+
     }
     public void Shoot()
     {
-        if (m_isShoot || !m_shootingPoint || m_curBullet <= 0) return;
+        if (IsShoot || !m_shootingPoint || m_curBullet <= 0) return;
         if (m_muzzleFlash)
         {
             var muzzleFlashClone = Instantiate(m_muzzleFlash, m_shootingPoint.position, transform.rotation);
@@ -82,7 +88,7 @@ public class Weapon : MonoBehaviour
         }
         m_curBullet--;
         GUIManager.Ins.UpdateBulletCouting(m_curBullet, statsData.bullets);
-        m_isShoot = true;
+        IsShoot = true;
         if (m_curBullet <= 0)
         {
             Reload();
@@ -93,5 +99,16 @@ public class Weapon : MonoBehaviour
     {
         m_isReloading = true;
         onReload?.Invoke();
+    }
+    public void ResetFireRate(float originalFireRate)
+    {
+        statsData.fireRate = originalFireRate;
+        m_curFireRate = originalFireRate;
+    }
+
+    public void ResetReloadTime(float originalReloadTime)
+    {
+        statsData.reloadTime = originalReloadTime;
+        m_curReloadTime = originalReloadTime;
     }
 }

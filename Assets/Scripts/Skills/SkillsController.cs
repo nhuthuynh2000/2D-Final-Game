@@ -7,7 +7,7 @@ public class SkillsController : MonoBehaviour
     public SkillSO skillStats;
 
     protected bool m_isTriggered;
-    protected bool m_isCoolDowning;
+    private bool m_isCoolDowning;
 
     protected float m_triggerTime;
     protected float m_coolDownTime;
@@ -21,7 +21,7 @@ public class SkillsController : MonoBehaviour
 
     public float coolDownProgress
     {
-        get => CoolDownTime / skillStats.coolDownTime;
+        get => m_coolDownTime / skillStats.coolDownTime;
     }
 
     public float triggerProgress

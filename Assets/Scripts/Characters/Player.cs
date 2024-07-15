@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,7 @@ public class Player : Actor
     private float m_curSpeed;
     private Vector2 m_enemyTargetedDir;
     private PlayerStats m_playerStats;
+    private ShiledSkillSO m_shieldStats;
 
     [Header("Player Events: ")]
     public UnityEvent OnAddXP;
@@ -22,6 +24,8 @@ public class Player : Actor
     public UnityEvent onLostLife;
 
     public PlayerStats PlayerStats { get => m_playerStats; private set => m_playerStats = value; }
+    public ShiledSkillSO ShieldStats { get => m_shieldStats; private set => m_shieldStats = value; }
+    public float CurSpeed { get => m_curSpeed; set => m_curSpeed = value; }
 
     public override void Init()
     {
@@ -88,17 +92,17 @@ public class Player : Actor
 
     private void BackToIdle()
     {
-        m_curSpeed -= m_accelerationSpeed * Time.deltaTime;
-        m_curSpeed = Mathf.Clamp(m_curSpeed, 0f, m_curSpeed);
+        CurSpeed -= m_accelerationSpeed * Time.deltaTime;
+        CurSpeed = Mathf.Clamp(CurSpeed, 0f, CurSpeed);
         m_rb.velocity = Vector2.zero;
         m_anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
     }
 
     private void Run(Vector2 movingDir)
     {
-        m_curSpeed += m_accelerationSpeed * Time.deltaTime;
-        m_curSpeed = Mathf.Clamp(m_curSpeed, 0f, PlayerStats.moveSpeed);
-        float delta = m_curSpeed * Time.deltaTime;
+        CurSpeed += m_accelerationSpeed * Time.deltaTime;
+        CurSpeed = Mathf.Clamp(CurSpeed, 0f, PlayerStats.moveSpeed);
+        float delta = CurSpeed * Time.deltaTime;
         m_rb.velocity = movingDir.normalized * delta;
         float velocityLimitX = Mathf.Clamp(m_rb.velocity.x, -m_velocityLimit.x, m_velocityLimit.y);
         float velocityLimitY = Mathf.Clamp(m_rb.velocity.y, -m_velocityLimit.y, m_velocityLimit.y);
