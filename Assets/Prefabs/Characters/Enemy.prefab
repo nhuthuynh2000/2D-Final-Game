@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7158566698994450073}
     m_Modifications:
+    - target: {fileID: 1025147070231371652, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073507652910442145, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324968923169125028, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6064163599020490590, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1
@@ -48,9 +60,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6080552755138451987, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6176125575613647609, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176125575613647609, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62,9 +82,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6064163599020490590, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
   m_PrefabInstance: {fileID: 1355736598595875762}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7401022556477091541 stripped
+--- !u!114 &6169144610491019128 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8387177558545128807, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5137972853594430666, guid: c1ac5cc7ba897134fac542e340b20f7b, type: 3}
   m_PrefabInstance: {fileID: 1355736598595875762}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -302,7 +322,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  healthBar: {fileID: 7401022556477091541}
+  m_healthBar: {fileID: 6169144610491019128}
 --- !u!114 &6423293371261263063
 MonoBehaviour:
   m_ObjectHideFlags: 0

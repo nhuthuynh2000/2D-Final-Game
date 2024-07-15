@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Enemy : Actor
 {
-    [SerializeField] private HealthBar healthBar;
-    private HealthSystem healthSystem;
+    [SerializeField] private HealthBar m_healthBar;
     private Player m_Player;
     private EnemyStats m_enemyStats;
     private float m_curDamage;
     private float m_xpBonus;
-
     public float CurDamage { get => m_curDamage; private set => m_curDamage = value; }
 
     public override void Init()
@@ -18,8 +16,7 @@ public class Enemy : Actor
         m_enemyStats = (EnemyStats)statsData;
         m_enemyStats.Load();
         StatsCalculate();
-        healthSystem = new HealthSystem(m_enemyStats.hp);
-        healthBar.SetUp(healthSystem);
+        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
         onDead.AddListener(() => onSpawnCollectables());
         onDead.AddListener(() => onAddXpToPlayer());
     }
@@ -89,8 +86,7 @@ public class Enemy : Actor
     {
         if (damage < 0 || m_isInvincible) return;
         CurHP -= m_Player.weapon.statsData.damage;
-        healthSystem.Damage(m_Player.weapon.statsData.damage);
-        healthBar.SetUp(healthSystem);
+        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
         Knockback();
         if (CurHP <= 0)
         {

@@ -1,17 +1,9 @@
-using System;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    private HealthSystem healthSystem;
-    public void SetUp(HealthSystem healthSystem)
+    public void UpdateHealthBar(float curHP, float maxHP)
     {
-        this.healthSystem = healthSystem;
-        healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
-    }
-
-    private void HealthSystem_OnHealthChanged(object sender, EventArgs e)
-    {
-        transform.Find("Bar").localScale = new Vector3(healthSystem.GetHealthPercent(), 1);
+        transform.Find("Bar").transform.localScale = new Vector3(curHP / maxHP, 0.1f, 0);
     }
 }
