@@ -41,7 +41,7 @@ public class ShieldEffectController : MonoBehaviour
                 {
                     Destroy(gameObject);
                     m_player.CurSpeed = m_player.statsData.moveSpeed;
-                    m_shield.ForceStop();
+                    m_shield.Stop();
                 }
             }
         }

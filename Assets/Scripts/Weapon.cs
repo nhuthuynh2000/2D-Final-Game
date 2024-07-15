@@ -100,15 +100,4 @@ public class Weapon : MonoBehaviour
         m_isReloading = true;
         onReload?.Invoke();
     }
-    public void ResetFireRate(float originalFireRate)
-    {
-        statsData.fireRate = originalFireRate;
-        m_curFireRate = originalFireRate;
-    }
-
-    public void ResetReloadTime(float originalReloadTime)
-    {
-        statsData.reloadTime = originalReloadTime;
-        m_curReloadTime = originalReloadTime;
-    }
 }

@@ -21,8 +21,8 @@ public class FirerateUp : SkillsController
 
     private void OnDisable()
     {
-        m_weapon.ResetFireRate(m_onSkillFirerate);
-        m_weapon.ResetReloadTime(m_onSkillReload);
+        m_weapon.statsData.fireRate = m_onSkillFirerate;
+        m_weapon.statsData.reloadTime = m_onSkillReload;
         OnTriggerEnter.RemoveListener(TriggerEnter);
         OnSkillUpdate.RemoveListener(SkillUpdate);
     }
