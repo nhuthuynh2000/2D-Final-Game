@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public CinemachineVirtualCamera mainCamera;
     public float cameraDistance = 5f;
     [SerializeField] private SkillButtonsDrawers m_skillButtonsDrawer;
+    [SerializeField] private ButtonsTrigger m_buttonTrigger;
     [SerializeField] private Map m_mapPrefab;
     [SerializeField] private Player m_playerPrefab;
     [SerializeField] private Enemy[] m_enemyPrefab;
@@ -31,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     private Player m_player;
     private PlayerStats m_playerStats;
     private int m_curLife;
+    private bool m_isPlaying;
 
     public Player Player { get => m_player; private set => m_player = value; }
     public int CurLife
@@ -43,6 +45,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public bool IsPlaying { get => m_isPlaying; set => m_isPlaying = value; }
+    public SkillButtonsDrawers SkillButtonsDrawer { get => m_skillButtonsDrawer; }
+
     public override void Start()
     {
         Init();
@@ -50,7 +55,8 @@ public class GameManager : Singleton<GameManager>
         SkillsManager.Ins?.AddSkill(SkillType.Shield, 99);
         SkillsManager.Ins?.AddSkill(SkillType.ThunderBolt, 99);
         SkillsManager.Ins?.AddSkill(SkillType.FireRateUp, 99);
-        m_skillButtonsDrawer?.DrawSkillButton();
+        SkillButtonsDrawer?.DrawSkillButton();
+        m_buttonTrigger.LoadInput();
     }
 
     private void Init()
@@ -58,6 +64,7 @@ public class GameManager : Singleton<GameManager>
         State = GameStates.STARTING;
         m_curLife = m_playerStartingLife;
         SpawnMap_Player();
+        IsPlaying = false;
         GUIManager.Ins.showGameGUI(false);
     }
     private void SpawnMap_Player()
@@ -70,6 +77,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PlayGame()
     {
+        IsPlaying = true;
         State = GameStates.PLAYING;
         m_playerStats = m_player.PlayerStats;
         if (m_player)
@@ -126,6 +134,7 @@ public class GameManager : Singleton<GameManager>
         OnLostLife?.Invoke();
         if (m_curLife <= 0)
         {
+            IsPlaying = false;
             State = GameStates.GAMEOVER;
             OnDead?.Invoke();
         }

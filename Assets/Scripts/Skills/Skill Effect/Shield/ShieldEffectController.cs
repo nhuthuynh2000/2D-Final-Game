@@ -36,12 +36,11 @@ public class ShieldEffectController : MonoBehaviour
             if (enemy)
             {
                 m_curShieldValue -= enemy.CurDamage;
-                Debug.Log($"Shield value remaining: {m_curShieldValue}");
                 if (m_curShieldValue <= 0)
                 {
-                    Destroy(gameObject);
                     m_player.CurSpeed = m_player.statsData.moveSpeed;
                     m_shield.Stop();
+                    Destroy(gameObject);
                 }
             }
         }

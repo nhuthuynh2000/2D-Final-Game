@@ -8,6 +8,7 @@ public class FirerateUp : SkillsController
 
     private float m_onSkillFirerate;
     private float m_onSkillReload;
+    private float m_onSkillTriggerTime;
 
     private void Awake()
     {
@@ -21,8 +22,6 @@ public class FirerateUp : SkillsController
 
     private void OnDisable()
     {
-        m_weapon.statsData.fireRate = m_onSkillFirerate;
-        m_weapon.statsData.reloadTime = m_onSkillReload;
         OnTriggerEnter.RemoveListener(TriggerEnter);
         OnSkillUpdate.RemoveListener(SkillUpdate);
     }
@@ -34,10 +33,14 @@ public class FirerateUp : SkillsController
         m_onSkillReload = m_weapon.statsData.reloadTime;
         m_weapon.statsData.fireRate -= m_curStats.firerateUp;
         m_weapon.statsData.reloadTime -= m_curStats.reloadSpeedDown;
+        m_onSkillTriggerTime = m_curStats.timeTrigger;
     }
 
     public void SkillUpdate()
     {
-
+        m_onSkillTriggerTime -= Time.deltaTime;
+        if (m_onSkillTriggerTime > 0) return;
+        m_weapon.statsData.fireRate = m_onSkillFirerate;
+        m_weapon.statsData.reloadTime = m_onSkillReload;
     }
 }

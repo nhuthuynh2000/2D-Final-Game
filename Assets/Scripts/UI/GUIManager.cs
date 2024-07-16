@@ -17,6 +17,8 @@ public class GUIManager : Singleton<GUIManager>
     [SerializeField] private Text m_bulletCountingText;
     [SerializeField] private Dialog m_gunUpgradeDialog;
     [SerializeField] private Dialog m_gameOverDialog;
+    [SerializeField] private Dialog m_instructionDialog;
+    [SerializeField] private Dialog m_OptionsDialog;
     private Dialog m_activeDialog;
 
     public Dialog ActiveDialog { get => m_activeDialog; private set => m_activeDialog = value; }
@@ -43,6 +45,22 @@ public class GUIManager : Singleton<GUIManager>
     public void ShowGameOverDialog()
     {
         ShowDialog(m_gameOverDialog);
+    }
+    public void ShowInstructionDialog()
+    {
+        ShowDialog(m_instructionDialog);
+    }
+    public void CloseInstructionDialog()
+    {
+        if (m_instructionDialog != null) m_instructionDialog.Close();
+    }
+    public void ShowOptionsDialog()
+    {
+        ShowDialog(m_OptionsDialog);
+    }
+    public void CloseOptionsDialog()
+    {
+        if (m_OptionsDialog != null) m_OptionsDialog.Close();
     }
     public void UpdateLifeInfo(int life)
     {

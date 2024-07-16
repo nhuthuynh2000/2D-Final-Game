@@ -48,6 +48,7 @@ public class Player : Actor
 
     public void FixedUpdate()
     {
+        if (!GameManager.Ins.IsPlaying) return;
         Move();
         WeaponHandle();
     }

@@ -94,7 +94,7 @@ public class SkillButtons : MonoBehaviour
         }
     }
 
-    private void TriggerSkill()
+    public void TriggerSkill()
     {
         if (m_skillController == null) return;
         m_skillController.Trigger();

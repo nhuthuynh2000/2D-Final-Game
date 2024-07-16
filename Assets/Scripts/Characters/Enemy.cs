@@ -86,6 +86,7 @@ public class Enemy : Actor
     {
         if (damage < 0 || m_isInvincible) return;
         CurHP -= m_Player.weapon.statsData.damage;
+        if (CurHP < 0) CurHP = 0;
         m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
         Knockback();
         if (CurHP <= 0)
