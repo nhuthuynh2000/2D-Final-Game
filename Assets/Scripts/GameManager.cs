@@ -18,7 +18,6 @@ public class GameManager : Singleton<GameManager>
     public CinemachineVirtualCamera mainCamera;
     public float cameraDistance = 5f;
     [SerializeField] private SkillButtonsDrawers m_skillButtonsDrawer;
-    [SerializeField] private ButtonsTrigger m_buttonTrigger;
     [SerializeField] private Map m_mapPrefab;
     [SerializeField] private Player m_playerPrefab;
     [SerializeField] private Enemy[] m_enemyPrefab;
@@ -27,7 +26,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float m_enemySpawnTime;
     [SerializeField] private int m_playerMaxLife;
     [SerializeField] private int m_playerStartingLife;
-
     private Map m_map;
     private Player m_player;
     private PlayerStats m_playerStats;
@@ -56,7 +54,6 @@ public class GameManager : Singleton<GameManager>
         SkillsManager.Ins?.AddSkill(SkillType.ThunderBolt, 99);
         SkillsManager.Ins?.AddSkill(SkillType.FireRateUp, 99);
         SkillButtonsDrawer?.DrawSkillButton();
-        m_buttonTrigger.LoadInput();
     }
 
     private void Init()

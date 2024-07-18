@@ -9,6 +9,7 @@ public class SkillsManager : Singleton<SkillsManager>
     private Dictionary<SkillType, int> m_skillCollecteds;
 
     public Dictionary<SkillType, int> SkillCollecteds { get => m_skillCollecteds; }
+    public SkillsController[] SkillControllers { get => m_skillControllers; }
 
     public override void Awake()
     {
@@ -19,11 +20,11 @@ public class SkillsManager : Singleton<SkillsManager>
     private void Initialize()
     {
         m_skillCollecteds = new Dictionary<SkillType, int>();
-        if (m_skillControllers == null || m_skillControllers.Length <= 0) return;
+        if (SkillControllers == null || SkillControllers.Length <= 0) return;
 
-        for (int i = 0; i < m_skillControllers.Length; i++)
+        for (int i = 0; i < SkillControllers.Length; i++)
         {
-            var skillController = m_skillControllers[i];
+            var skillController = SkillControllers[i];
             if (skillController == null) continue;
             skillController.LoadStats();
             skillController.OnStopWithType.AddListener(RemoveSkill);
@@ -33,7 +34,7 @@ public class SkillsManager : Singleton<SkillsManager>
 
     public SkillsController GetSkillController(SkillType type)
     {
-        var findeds = m_skillControllers.Where(s => s.skillType == type).ToArray();
+        var findeds = SkillControllers.Where(s => s.skillType == type).ToArray();
         if (findeds == null || findeds.Length <= 0) return null;
         return findeds[0];
     }
@@ -82,8 +83,8 @@ public class SkillsManager : Singleton<SkillsManager>
 
     public void StopAllSkill()
     {
-        if (m_skillControllers == null || m_skillControllers.Length <= 0) return;
-        foreach (var skillController in m_skillControllers)
+        if (SkillControllers == null || SkillControllers.Length <= 0) return;
+        foreach (var skillController in SkillControllers)
         {
             if (skillController == null) continue;
             skillController.ForceStop();
