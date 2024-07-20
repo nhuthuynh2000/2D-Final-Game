@@ -19,6 +19,7 @@ public class GUIManager : Singleton<GUIManager>
     [SerializeField] private Dialog m_gameOverDialog;
     [SerializeField] private Dialog m_instructionDialog;
     [SerializeField] private Dialog m_OptionsDialog;
+    [SerializeField] private Dialog m_SkillDialog;
     private Dialog m_activeDialog;
 
     public Dialog ActiveDialog { get => m_activeDialog; private set => m_activeDialog = value; }
@@ -66,6 +67,14 @@ public class GUIManager : Singleton<GUIManager>
     {
         ClearLifeGrid();
         DrawLifeGrid(life);
+    }
+    public void ShowSkillsDialog()
+    {
+        ShowDialog(m_SkillDialog);
+    }
+    public void CloseSkillsDialog()
+    {
+        if (m_SkillDialog != null) m_SkillDialog.Close();
     }
 
     private void DrawLifeGrid(int life)
