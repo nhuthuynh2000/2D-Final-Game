@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Weapon Stats
   m_EditorClassIdentifier: 
   bullets: 15
-  fireRate: 1.2
+  fireRate: 1.5
   reloadTime: 5
-  damage: 3.3125
+  damage: 3
   level: 1
   maxLevel: 1000
   bulletsUp: 1
   fireRateDown: 0.005
   reloadTimeDown: 0.1
   damageUp: 0.25
-  upgradePrice: 475
+  upgradePrice: 1825
   upgradePriceUp: 50
   minFireRate: 0.1
   minreloadTime: 0.1

@@ -22,8 +22,11 @@ public class FirerateUp : SkillsController
 
     private void OnDisable()
     {
-        m_weapon.statsData.fireRate = m_onSkillFirerate;
-        m_weapon.statsData.reloadTime = m_onSkillReload;
+        if (m_onSkillFirerate != null || m_onSkillReload != null)
+        {
+            m_weapon.statsData.fireRate = m_onSkillFirerate;
+            m_weapon.statsData.reloadTime = m_onSkillReload;
+        }
         OnTriggerEnter.RemoveListener(TriggerEnter);
         OnSkillUpdate.RemoveListener(SkillUpdate);
     }
@@ -34,7 +37,9 @@ public class FirerateUp : SkillsController
         m_onSkillFirerate = m_weapon.statsData.fireRate;
         m_onSkillReload = m_weapon.statsData.reloadTime;
         m_weapon.statsData.fireRate -= m_curStats.firerateUp;
+        m_weapon.statsData.fireRate = Mathf.Clamp(m_weapon.statsData.fireRate, 0.1f, m_weapon.statsData.fireRate);
         m_weapon.statsData.reloadTime -= m_curStats.reloadSpeedDown;
+        m_weapon.statsData.reloadTime = Mathf.Clamp(m_weapon.statsData.reloadTime, 0.1f, m_weapon.statsData.reloadTime);
         m_onSkillTriggerTime = m_curStats.timeTrigger;
     }
 

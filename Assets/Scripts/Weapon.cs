@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
     public float CurFireRate { get => m_curFireRate; set => m_curFireRate = value; }
     public float CurReloadTime { get => m_curReloadTime; set => m_curReloadTime = value; }
     public bool IsShoot { get => m_isShoot; set => m_isShoot = value; }
+    public Transform ShootingPoint { get => m_shootingPoint; set => m_shootingPoint = value; }
 
     private void Start()
     {
@@ -71,15 +72,15 @@ public class Weapon : MonoBehaviour
     }
     public void Shoot()
     {
-        if (IsShoot || !m_shootingPoint || m_curBullet <= 0) return;
+        if (IsShoot || !ShootingPoint || m_curBullet <= 0) return;
         if (m_muzzleFlash)
         {
-            var muzzleFlashClone = Instantiate(m_muzzleFlash, m_shootingPoint.position, transform.rotation);
-            muzzleFlashClone.transform.SetParent(m_shootingPoint);
+            var muzzleFlashClone = Instantiate(m_muzzleFlash, ShootingPoint.position, transform.rotation);
+            muzzleFlashClone.transform.SetParent(ShootingPoint);
         }
         if (m_bullet)
         {
-            var bulletClone = Instantiate(m_bullet, m_shootingPoint.position, transform.rotation);
+            var bulletClone = Instantiate(m_bullet, ShootingPoint.position, transform.rotation);
             var projectilesComp = bulletClone.GetComponent<Projectiles>();
             if (projectilesComp)
             {

@@ -4,5 +4,5 @@ using UnityEngine;
 public class FireRingSkillSO : SkillSO
 {
     public float damage;
-    public float damagePerSecond;
+    public float delayTime;
 }

@@ -48,6 +48,16 @@ public class Enemy : Actor
     {
         GameManager.Ins.Player.AddXP(m_xpBonus);
     }
+    private void Update()
+    {
+        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
+        if (IsDead == true) return;
+        if (CurHP <= 0)
+        {
+            CurHP = 0;
+            Die();
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -86,14 +96,7 @@ public class Enemy : Actor
     {
         if (damage < 0 || m_isInvincible) return;
         CurHP -= m_Player.weapon.statsData.damage;
-        if (CurHP < 0) CurHP = 0;
-        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
         Knockback();
-        if (CurHP <= 0)
-        {
-            CurHP = 0;
-            Die();
-        }
         onTakeDamage?.Invoke();
     }
 
