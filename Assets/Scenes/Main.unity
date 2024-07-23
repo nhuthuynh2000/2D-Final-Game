@@ -3402,6 +3402,7 @@ MonoBehaviour:
   OnCoolDownStop:
     m_PersistentCalls:
       m_Calls: []
+  m_thunderPrefab: {fileID: 0}
 --- !u!1 &411914907
 GameObject:
   m_ObjectHideFlags: 0
