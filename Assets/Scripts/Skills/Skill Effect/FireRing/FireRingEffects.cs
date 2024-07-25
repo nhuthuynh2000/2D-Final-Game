@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class FireRingEffects : MonoBehaviour
     private FireRing m_fireRing;
     private FireRingSkillSO m_fireRingStats;
 
+    private bool m_canBeDamaged;
+
     private float m_damage;
     private void OnEnable()
     {
@@ -15,15 +18,30 @@ public class FireRingEffects : MonoBehaviour
         m_weapon = m_player.weapon;
         m_fireRing = (FireRing)SkillsManager.Ins.GetSkillController(SkillType.FireRing);
         m_fireRingStats = m_fireRing.CurStats;
-        m_damage = m_fireRingStats.damage + m_weapon.statsData.damage;
+        m_damage = m_fireRingStats.damage + m_weapon.statsData.damage / 10 * 100;
+        m_canBeDamaged = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Da va cham voi Enemy");
         if (collision.gameObject.CompareTag(TagConsts.ENEMY_TAG))
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.CurHP -= m_damage;
+            if (m_canBeDamaged)
+            {
+                StartCoroutine(DealDamage(enemy));
+            }
         }
+    }
+    private IEnumerator DealDamage(Enemy enemy)
+    {
+        enemy.CurHP -= m_damage;
+        Debug.Log(enemy.CurHP);
+        m_canBeDamaged = false;
+        yield return new WaitForSeconds(m_fireRingStats.delayTime);
+        m_canBeDamaged = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
     }
 }

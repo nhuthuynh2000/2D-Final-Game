@@ -7,6 +7,7 @@ public class Enemy : Actor
     private EnemyStats m_enemyStats;
     private float m_curDamage;
     private float m_xpBonus;
+    private float maxHP;
     public float CurDamage { get => m_curDamage; private set => m_curDamage = value; }
 
     public override void Init()
@@ -16,7 +17,7 @@ public class Enemy : Actor
         m_enemyStats = (EnemyStats)statsData;
         m_enemyStats.Load();
         StatsCalculate();
-        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
+        m_healthBar.UpdateHealthBar(CurHP, maxHP);
         onDead.AddListener(() => onSpawnCollectables());
         onDead.AddListener(() => onAddXpToPlayer());
     }
@@ -28,7 +29,8 @@ public class Enemy : Actor
         float hpUpgrade = m_enemyStats.hpUp * Helper.GetUpgradeFormula(PlayerStats.level + 1);
         float damageUpgrade = m_enemyStats.damageUp * Helper.GetUpgradeFormula(PlayerStats.level + 1);
         float randomXPBonus = Random.Range(m_enemyStats.minXPBonus, m_enemyStats.maxXPBonus);
-        CurHP = m_enemyStats.hp + hpUpgrade;
+        maxHP = m_enemyStats.hp + hpUpgrade;
+        CurHP = maxHP;
         CurDamage = m_enemyStats.damage + damageUpgrade;
         m_xpBonus = randomXPBonus * Helper.GetUpgradeFormula(PlayerStats.level + 1);
     }
@@ -50,7 +52,7 @@ public class Enemy : Actor
     }
     private void Update()
     {
-        m_healthBar.UpdateHealthBar(CurHP, m_enemyStats.hp);
+        m_healthBar.UpdateHealthBar(CurHP, maxHP);
         if (IsDead == true) return;
         if (CurHP <= 0)
         {
