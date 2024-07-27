@@ -6,6 +6,7 @@ public class SkillButtons : MonoBehaviour
     [SerializeField] private Image m_skillIcon;
     [SerializeField] private Image m_cooldownOverlay;
     [SerializeField] private Image m_timeTriggerFilled;
+    [SerializeField] private Image m_TriggerImageUI;
     [SerializeField] private Text m_amountText;
     [SerializeField] private Text m_cooldownText;
     [SerializeField] private Button m_btnComp;
@@ -13,6 +14,8 @@ public class SkillButtons : MonoBehaviour
     private SkillType m_skillType;
     private SkillsController m_skillController;
     private int m_currentAmount;
+    public Sprite skillButtonSpirte;
+
     #region EVENTS
     private void RegisterEvents()
     {
@@ -57,9 +60,15 @@ public class SkillButtons : MonoBehaviour
         }
         UpdateAmountText();
         UpdateCooldownText();
+        UpdateTriggerButton();
         UpdateTimeTrigger();
         bool canActiveMe = m_currentAmount > 0 || m_skillController.IsCoolDowning;
         gameObject.SetActive(canActiveMe);
+    }
+
+    private void UpdateTriggerButton()
+    {
+        m_TriggerImageUI.sprite = skillButtonSpirte;
     }
 
     private void UpdateTimeTrigger()

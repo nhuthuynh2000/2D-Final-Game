@@ -43,7 +43,7 @@ public class Player : Actor
 
     private void Update()
     {
-
+        SkillTrigger();
     }
 
     public void FixedUpdate()
@@ -175,9 +175,24 @@ public class Player : Actor
             Destroy(collectable.gameObject);
         }
     }
-    private void OnDrawGizmos()
+
+    private void SkillTrigger()
     {
-        Gizmos.color = new Color32(133, 250, 47, 50);
-        Gizmos.DrawSphere(transform.position, m_enemyDetectionRad);
+        if (Input.GetKey(KeyCode.Q))
+        {
+            ButtonsTrigger.Ins.TriggerQSkill();
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            ButtonsTrigger.Ins.TriggerESkill();
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            ButtonsTrigger.Ins.TriggerRSkill();
+        }
+        if (Input.GetKey(KeyCode.F))
+        {
+            ButtonsTrigger.Ins.TriggerFSkill();
+        }
     }
 }
