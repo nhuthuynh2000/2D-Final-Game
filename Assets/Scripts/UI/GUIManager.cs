@@ -20,6 +20,7 @@ public class GUIManager : Singleton<GUIManager>
     [SerializeField] private Dialog m_instructionDialog;
     [SerializeField] private Dialog m_OptionsDialog;
     [SerializeField] private Dialog m_SkillDialog;
+    [SerializeField] private Dialog m_ExitDialog;
     private Dialog m_activeDialog;
 
     public Dialog ActiveDialog { get => m_activeDialog; private set => m_activeDialog = value; }
@@ -62,6 +63,21 @@ public class GUIManager : Singleton<GUIManager>
     public void CloseOptionsDialog()
     {
         if (m_OptionsDialog != null) m_OptionsDialog.Close();
+    }
+
+    public void ShowExitDialog()
+    {
+        Time.timeScale = 0f;
+        ShowDialog(m_ExitDialog);
+    }
+    public void CloseExitDialog()
+    {
+        if (m_ExitDialog != null)
+        {
+            m_ExitDialog.Close();
+            GameManager.Ins.ExitDialogIsOpen = false;
+            Time.timeScale = 1f;
+        }
     }
     public void UpdateLifeInfo(int life)
     {
@@ -128,5 +144,10 @@ public class GUIManager : Singleton<GUIManager>
     {
         if (m_bulletCountingText)
             m_bulletCountingText.text = $"{curBullet.ToString("n0")}/{bullet.ToString("n0")}";
+    }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 }

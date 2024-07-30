@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     private PlayerStats m_playerStats;
     private int m_curLife;
     private bool m_isPlaying;
+    public bool ExitDialogIsOpen = false;
 
     public Player Player { get => m_player; private set => m_player = value; }
     public int CurLife
@@ -93,6 +94,24 @@ public class GameManager : Singleton<GameManager>
     public override void Awake()
     {
         MakeSingleton(false);
+    }
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(ExitDialogIsOpen == false)
+            {
+                ExitDialogIsOpen = true;
+                GUIManager.Ins.ShowExitDialog();
+                Time.timeScale = 0f;
+            } else if(ExitDialogIsOpen == true)
+            {
+                ExitDialogIsOpen = false;
+                Time.timeScale = 1f;
+                GUIManager.Ins.CloseExitDialog();
+            }
+        }
     }
 
     private void SpawnEnemy()
