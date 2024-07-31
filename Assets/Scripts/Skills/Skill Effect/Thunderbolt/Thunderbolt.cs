@@ -12,9 +12,7 @@ public class Thunderbolt : SkillsController
 
     [SerializeField] private LayerMask m_enemyDetectionLayer;
 
-    private float m_speed;
     private float m_spawnRate;
-    private float m_numberOfTargets;
     private Actor m_enemyTargeted;
     private float m_radius;
     private bool m_isShooted = false;
@@ -44,9 +42,7 @@ public class Thunderbolt : SkillsController
         m_player = GameManager.Ins.Player;
         m_weapon = m_player.weapon;
         m_spawnPos = m_weapon.ShootingPoint;
-        m_speed = CurStats.moveSpeed;
         m_spawnRate = CurStats.spanwRate;
-        m_numberOfTargets = CurStats.numberOfTargets;
         m_radius = CurStats.radius;
     }
 

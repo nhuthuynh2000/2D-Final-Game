@@ -18,7 +18,7 @@ public class FireRingEffects : MonoBehaviour
         m_weapon = m_player.weapon;
         m_fireRing = (FireRing)SkillsManager.Ins.GetSkillController(SkillType.FireRing);
         m_fireRingStats = m_fireRing.CurStats;
-        m_damage = m_fireRingStats.damage + m_weapon.statsData.damage / 10 * 100;
+        m_damage = m_fireRingStats.damage + m_weapon.statsData.damage * 10 / 100;
         m_canBeDamaged = true;
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -32,10 +32,13 @@ public class FireRingEffects : MonoBehaviour
             }
         }
     }
+    private void Update()
+    {
+        Debug.Log(m_damage);
+    }
     private IEnumerator DealDamage(Enemy enemy)
     {
         enemy.CurHP -= m_damage;
-        Debug.Log(enemy.CurHP);
         m_canBeDamaged = false;
         yield return new WaitForSeconds(m_fireRingStats.delayTime);
         m_canBeDamaged = true;

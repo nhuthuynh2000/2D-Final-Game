@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d4daffbbed00d49ad4f339604a4f7f, type: 3}
   m_Name: Thunderbolt
   m_EditorClassIdentifier: 
-  timeTrigger: 8
-  coolDownTime: 16
+  timeTrigger: 12
+  coolDownTime: 24
   skillIcon: {fileID: 21300000, guid: e327ebde726ebb949b431fb6e565deef, type: 3}
   triggerSoundFX: {fileID: 0}
-  firstTargetDamage: 30
-  previousTargetDamage: 15
+  firstTargetDamage: 2
+  previousTargetDamage: 0.5
   spanwRate: 2
   moveSpeed: 50
   radius: 4
-  numberOfTargets: 5

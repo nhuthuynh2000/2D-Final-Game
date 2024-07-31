@@ -5,7 +5,4 @@ public class ShiledSkillSO : SkillSO
 {
     public float shieldValue;
     public float moveSpeedDown;
-
-    [Header("Level UP")]
-    public float shieldValueUp;
 }

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149c1294c3355546a0703fcee697aa2, type: 3}
   m_Name: Weapon Stats
   m_EditorClassIdentifier: 
-  bullets: 20
-  fireRate: 1.4975
-  reloadTime: 4.95
-  damage: 3.125
-  level: 3
+  bullets: 14
+  fireRate: 1.5
+  reloadTime: 5
+  damage: 3
+  level: 1
   maxLevel: 1000
   bulletsUp: 1
   fireRateDown: 0.005
   reloadTimeDown: 0.1
   damageUp: 0.25
-  upgradePrice: 2075
-  upgradePriceUp: 50
+  upgradePrice: 25
+  upgradePriceUp: 25
   minFireRate: 0.1
   minreloadTime: 0.1

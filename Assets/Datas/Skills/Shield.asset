@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   timeTrigger: 10
-  coolDownTime: 20
+  coolDownTime: 30
   skillIcon: {fileID: 21300000, guid: d786b4e9525c83b48b4948b8af48707e, type: 3}
   triggerSoundFX: {fileID: 0}
-  shieldValue: 5000
-  moveSpeedDown: 300
-  shieldValueUp: 0
+  shieldValue: 50
+  moveSpeedDown: 500
