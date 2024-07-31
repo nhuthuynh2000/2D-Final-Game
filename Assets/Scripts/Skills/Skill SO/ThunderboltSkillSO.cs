@@ -7,5 +7,6 @@ public class ThunderboltSkillSO : SkillSO
     public float previousTargetDamage;
     public float spanwRate;
     public float moveSpeed;
+    public float radius;
     public int numberOfTargets;
 }

@@ -18,3 +18,7 @@ MonoBehaviour:
   triggerSoundFX: {fileID: 0}
   firstTargetDamage: 30
   previousTargetDamage: 15
+  spanwRate: 2
+  moveSpeed: 50
+  radius: 4
+  numberOfTargets: 5
