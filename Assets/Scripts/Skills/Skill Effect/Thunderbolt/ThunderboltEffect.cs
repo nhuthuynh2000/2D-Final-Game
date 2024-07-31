@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using DigitalRuby.LightningBolt;
 using UnityEngine;
 
 public class ThunderboltEffect : MonoBehaviour
@@ -11,6 +13,7 @@ public class ThunderboltEffect : MonoBehaviour
     private List<GameObject> spawnedThunderbolts;
     private Thunderbolt m_thunderbolt;
     private ThunderboltSkillSO m_thunderStats;
+    private LightningBoltScript m_script;
     private float m_moveSpeed;
     private float m_firstDamage;
     private float m_previousDamage;
@@ -52,12 +55,12 @@ public class ThunderboltEffect : MonoBehaviour
             var enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.CurHP -= m_firstDamage;
             affectedEnemies.Add(enemy);
-            SpreadThunderbolt();
+            SpreadThunderbolt(enemy);
             Destroy(gameObject);
         }
     }
 
-    private void SpreadThunderbolt()
+    private void SpreadThunderbolt(Enemy firstEnemy)
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, m_radius, m_enemyLayer);
         foreach (Collider2D collider in colliders)
@@ -67,7 +70,11 @@ public class ThunderboltEffect : MonoBehaviour
             {
                 enemy.CurHP -= m_previousDamage;
                 affectedEnemies.Add(enemy);
-                GameObject thunderbolt = Instantiate(thunderboltPrefab, collider.transform.position, Quaternion.identity);
+                var thunderbolt = Instantiate(thunderboltPrefab, collider.transform.position, Quaternion.identity);
+                m_script = thunderbolt.GetComponent<LightningBoltScript>();
+                Debug.Log(m_script);
+                m_script.StartObject = firstEnemy.gameObject;
+                m_script.EndObject = enemy.gameObject;
                 spawnedThunderbolts.Add(thunderbolt);
             }
         }

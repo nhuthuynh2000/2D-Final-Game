@@ -18,10 +18,9 @@ MonoBehaviour:
   knockbackForce: 1500
   knockbackTime: 0.8
   invicibleTime: 1
-  dashForce: 1
   level: 1
   maxLevel: 1000
-  xp: 11.438168
+  xp: 15.423656
   levelUpXPNeed: 25
   levelUpXPNeedUp: 35
   HpUp: 10

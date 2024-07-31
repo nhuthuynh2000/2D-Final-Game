@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Player Stats", menuName = "Huynh DEV/ Create Player Stats")]
 public class PlayerStats : ActorStats
 {
-    public float dashForce;
     [Header("Level Up Base: ")]
     public int level;
     public int maxLevel;

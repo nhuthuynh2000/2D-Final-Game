@@ -1,7 +1,3 @@
-
-using System;
-using System.Collections;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,7 +17,6 @@ public class Player : Actor
     private PlayerStats m_playerStats;
     private ShiledSkillSO m_shieldStats;
 
-    private bool m_isDashing = false;
 
     [Header("Player Events: ")]
     public UnityEvent OnAddXP;
@@ -49,11 +44,6 @@ public class Player : Actor
     private void Update()
     {
         SkillTrigger();
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Dash");
-            Dash();
-        }
     }
 
     public void FixedUpdate()
@@ -204,21 +194,6 @@ public class Player : Actor
         {
             ButtonsTrigger.Ins.TriggerFSkill();
         }
-    }
-    private void Dash()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dashDir = mousePos - (Vector2)transform.position;
-        dashDir.Normalize();
-        m_rb.velocity = new Vector2(m_playerStats.dashForce * dashDir.x, m_playerStats.dashForce * dashDir.y);
-        m_isDashing = true;
-        StartCoroutine(StopDash());
-    }
 
-    private IEnumerator StopDash()
-    {
-        yield return new WaitForSeconds(2);
-        m_rb.velocity = new Vector2(0f, 0f);
-        m_isDashing = false;
     }
 }

@@ -1,3 +1,4 @@
+using DigitalRuby.LightningBolt;
 using UnityEngine;
 
 public class Thunderbolt : SkillsController
@@ -5,6 +6,7 @@ public class Thunderbolt : SkillsController
 
     [SerializeField] private GameObject m_thunderPrefab;
     private ThunderboltSkillSO m_curStats;
+    private LightningBoltScript m_scripts;
     private Player m_player;
     private Weapon m_weapon;
     private Transform m_spawnPos;
@@ -62,12 +64,15 @@ public class Thunderbolt : SkillsController
         m_isShooted = false;
     }
 
-    public void Shoot(Vector3 targetDirection, float angle)
+    public void Shoot(Vector3 targetDirection, float angle, Enemy enemy)
     {
         if (m_isShooted || m_spawnPos == null) return;
         if (ThunderPrefab)
         {
             var thunderPrefabClone = Instantiate(ThunderPrefab, m_spawnPos.transform.position, Quaternion.Euler(0f, 0f, angle));
+            m_scripts = thunderPrefabClone.GetComponent<LightningBoltScript>();
+            m_scripts.StartObject = m_spawnPos.gameObject;
+            m_scripts.EndObject = enemy.gameObject;
         }
         m_isShooted = true;
     }
@@ -82,7 +87,7 @@ public class Thunderbolt : SkillsController
         Vector2 enemyDir = EnemyTargeted.transform.position - m_player.transform.position;
         enemyDir.Normalize();
         float angle = Mathf.Atan2(enemyDir.y, enemyDir.x) * Mathf.Rad2Deg;
-        Shoot(enemyDir, angle);
+        Shoot(enemyDir, angle, (Enemy)finalEnemy);
     }
 
     private Actor FindNearestEnemy(Collider2D[] enemyFindeds)
