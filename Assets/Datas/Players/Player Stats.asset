@@ -20,7 +20,7 @@ MonoBehaviour:
   invicibleTime: 1
   level: 1
   maxLevel: 1000
-  xp: 15.423656
+  xp: 0
   levelUpXPNeed: 25
   levelUpXPNeedUp: 35
   HpUp: 10

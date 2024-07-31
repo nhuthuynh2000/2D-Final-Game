@@ -73,6 +73,7 @@ public class Thunderbolt : SkillsController
             m_scripts = thunderPrefabClone.GetComponent<LightningBoltScript>();
             m_scripts.StartObject = m_spawnPos.gameObject;
             m_scripts.EndObject = enemy.gameObject;
+            AudioController.Ins.PlaySound(m_curStats.triggerSoundFX);
         }
         m_isShooted = true;
     }

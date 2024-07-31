@@ -39,6 +39,7 @@ public class Shield : SkillsController
         Destroy(shieldEffectController, CurStats.timeTrigger);
         shieldEffectController = m_shieldClone.AddComponent<ShieldEffectController>();
         m_player.CurSpeed -= CurStats.moveSpeedDown;
+        AudioController.Ins.PlaySound(m_curStats.triggerSoundFX);
     }
 
     public void SkillUpdate()

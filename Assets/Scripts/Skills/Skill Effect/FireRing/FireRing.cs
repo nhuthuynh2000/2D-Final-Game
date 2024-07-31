@@ -36,6 +36,7 @@ public class FireRing : SkillsController
         m_spawnPos = m_weapon.ShootingPoint;
         if (m_spawnPos == null || m_firePrefab == null) return;
         m_firePrefabClone = Instantiate(m_firePrefab, m_spawnPos.transform.position, m_weapon.transform.rotation);
+        AudioController.Ins.PlaySound(m_curStats.triggerSoundFX);
     }
 
     public void SkillUpdate()

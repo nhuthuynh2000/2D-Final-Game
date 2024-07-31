@@ -15,6 +15,6 @@ MonoBehaviour:
   timeTrigger: 8
   coolDownTime: 16
   skillIcon: {fileID: 21300000, guid: c8c2aac7e7b50c941b5746fdce23c41f, type: 3}
-  triggerSoundFX: {fileID: 0}
+  triggerSoundFX: {fileID: 8300000, guid: 7e188128582f24d4d8069a31ce63fd67, type: 3}
   reloadSpeedDown: 0.02
   firerateUp: 0.3

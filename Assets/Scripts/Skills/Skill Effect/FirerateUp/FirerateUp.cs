@@ -38,6 +38,7 @@ public class FirerateUp : SkillsController
         m_weapon.statsData.reloadTime -= m_curStats.reloadSpeedDown;
         m_weapon.statsData.reloadTime = Mathf.Clamp(m_weapon.statsData.reloadTime, 0.1f, m_weapon.statsData.reloadTime);
         m_onSkillTriggerTime = m_curStats.timeTrigger;
+        AudioController.Ins.PlaySound(m_curStats.triggerSoundFX);
     }
 
     public void SkillUpdate()
