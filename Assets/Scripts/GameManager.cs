@@ -98,19 +98,30 @@ public class GameManager : Singleton<GameManager>
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(ExitDialogIsOpen == false)
+            if (ExitDialogIsOpen == false)
             {
                 ExitDialogIsOpen = true;
                 GUIManager.Ins.ShowExitDialog();
                 Time.timeScale = 0f;
-            } else if(ExitDialogIsOpen == true)
+            }
+            else if (ExitDialogIsOpen == true)
             {
                 ExitDialogIsOpen = false;
                 Time.timeScale = 1f;
                 GUIManager.Ins.CloseExitDialog();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Prefs.coins += 10000;
+            GUIManager.Ins.UpdateCoinsCounting(Prefs.coins);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            m_player.PlayerStats.level += 100;
+            GUIManager.Ins.UpdateLevelInfo(m_player.PlayerStats.level, 0, m_player.PlayerStats.levelUpXPNeed);
         }
     }
 
